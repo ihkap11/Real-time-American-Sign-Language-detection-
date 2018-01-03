@@ -21,6 +21,7 @@ classes = {
     'u': 30,    'v': 31,    'w': 32,    'x': 33,    'y': 34,    'z': 35,}
 
 
+# dataset stores here
 dataset_file = "dataset.pickle"
 
 
@@ -115,8 +116,6 @@ def reshape_train_test(image_set, label_set, getShape = False):
         
     return X_train, X_test, y_in, y_out
         
-
-#create_train_test_data(training_file,0.2)
 
 
 
