@@ -66,6 +66,6 @@ def train_model(X_train, X_test, y_in, y_out, val_rate = 800, lr_ = 0.001):
 def get_score(X_test, y_out,model, verb = 1):
     
     score = model.evaluate(X_test, y_out, verbose=verb)
-    print("Accuracy:", score[1])
-    print("Loss:", score[0])
+    print("acc: %.2f%%" % ( score[1]*100))
+    print("loss: %.2f%%" % (score[0]*100))
     
