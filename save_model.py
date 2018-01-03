@@ -30,9 +30,9 @@ def load_model():
     
 
 
-def score_adam_optimizer(loaded_model, lr_ = 0.001):
+def score_adam_optimizer(X_test, y_out, loaded_model):
     
-    adam = keras.optimizers.Adam(lr=lr_)
+    adam = keras.optimizers.Adam(lr= 0.001)
     loaded_model.compile(optimizer=adam, 
                      loss='categorical_crossentropy',
                      metrics=['accuracy'])
@@ -43,7 +43,7 @@ def score_adam_optimizer(loaded_model, lr_ = 0.001):
 
 
 
-def score_rmsprop_optimizer(loaded_model):
+def score_rmsprop_optimizer(X_test, y_out, loaded_model):
     loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 
     score = loaded_model.evaluate(X_test, y_out, verbose=1)
