@@ -49,26 +49,15 @@ def generate_training_dataset():
         label_set.extend(label)
         
         pk.dump([image_set,label_set],open(dataset_file,"wb"))
+   
+    print("Dataset file successfully created!")
         
-        print("Dataset file successfully created!")
+    image_set, label_set =  shuffle(image_set, label_set)
+    print("Dataset successfully shuffled!")
     
     return image_set, label_set
-
-
-
-
-def create_train_test_data(training_file,testing_rate,image_set, label_set):
     
-    if(os.path.exists(dataset_file)==False):
-        generate_training_dataset()
-        
-    shuffle(image_set, label_set)
-        
-    dataset=np.load(training_file)
-    np.save("training_data.npy",dataset[0:-int(len(dataset)*testing_rate)])
-    np.save("testing_data.npy",dataset[-int(len(dataset)*testing_rate):])
-    
-    print("Training and Testing Dataset successfully created!")
+
     
 
     
@@ -134,8 +123,7 @@ def reshape_train_test(image_set, label_set, getShape = False):
 
 
 def __main__():
-    
+       
     # create dataset
-    testing_rate = 0.2
-    create_train_test_data(training_file,testing_rate)    
+    generate_training_dataset()   
 

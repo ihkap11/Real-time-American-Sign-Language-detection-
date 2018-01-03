@@ -1,7 +1,7 @@
 from keras.models import model_from_yaml
 
 
-def save_model():
+def save_model(model):
     
     # serialize model to YAML
     model_yaml = model.to_yaml()
@@ -25,9 +25,11 @@ def load_model():
     loaded_model.load_weights("model_95.66.h5")
     print("Loaded model from disk")
     
+    return loaded_model
+    
 
 
-def score_adam_optimizer(lr_ = 0.001):
+def score_adam_optimizer(loaded_model, lr_ = 0.001):
     
     adam = keras.optimizers.Adam(lr=lr_)
     loaded_model.compile(optimizer=adam, 
@@ -40,7 +42,7 @@ def score_adam_optimizer(lr_ = 0.001):
 
 
 
-def score_rmsprop_optimizer():
+def score_rmsprop_optimizer(loaded_model):
     loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
 
     score = loaded_model.evaluate(X_test, y_out, verbose=1)
